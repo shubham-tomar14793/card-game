@@ -2,14 +2,28 @@
 <html>
 <head>
     <title>Card Game</title>
-    <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no" />
-    <link rel="stylesheet" type="text/css" href="stylesheets/bootstrap.css">    
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no" />        
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">    
+    <link rel="stylesheet" type="text/css" href="stylesheets/bootstrap.css">
+    <link rel="stylesheet" type="text/css" href="stylesheets/index.css">
 </head>
 <body>
     <div class="container" ng-app="mainModule" ng-controller="indexPageController">
         <div class="row">
-            
+            <div class="col-lg-offset-2 col-lg-8 col-md-offset-2 col-md-8 col-sm-offset-2 col-sm-8 col-xs-12">
+                <div class="col-lg-3 col-sm-3 col-md-3 col-xs-3" ng-repeat="data in cardData"><div class="cards {{data.card_color}}" ng-bind="{{data.card_identifier}}" ng-click="checkForTheMatch(this)">
+                    <span>{{data.card_identifier}}</span></div></div>                
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-offset-2 col-lg-8 col-md-offset-2 col-md-8 col-sm-offset-2 col-sm-8 col-xs-12 score-board">
+                <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+                    <div class="score achieved"><span>Score Achieved :</span>{{achievedScore}}</div>
+                </div>
+                <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+                    <div class="score remaining"><span>Score remaining :</span>{{remainingScore}}</div>
+                </div>  
+            </div>
         </div>
     </div>
 

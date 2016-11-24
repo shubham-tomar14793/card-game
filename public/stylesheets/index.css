@@ -1,3 +1,13 @@
-#header {
-  color: #6c94be;
-}
+.Blue{background-color: #0000FF}
+.Brown{background-color: #A52A2A}
+.BurlyWood{background-color: #DEB887}
+.Chartreuse{background-color: #7FFF00}
+.Cyan{background-color: #00FFFF}
+.DarkGoldenRod{background-color: #B8860B}
+.DarkKhaki{background-color: #BDB76B}
+.DarkSlateGray {background-color: #2F4F4F}
+
+
+.cards{font-size:2em;text-align:center;height:100px;border:1px solid;margin-bottom:20px;}
+.score-board{border:1px solid #e3e3e3;padding: 10px 0px;margin-top: 40px}
+.score{font-size:2em}
