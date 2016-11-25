@@ -1,11 +1,12 @@
 (function(){
 	var moduleForIndexPage = angular.module('mainModule');	
-	moduleForIndexPage.controller('indexPageController',['$scope','indexPageService',function($scope,indexPageService){				
+	moduleForIndexPage.controller('indexPageController',['$scope','$timeout','indexPageService','$route',function($scope,$timeout,indexPageService,$route){				
 		/*############## variable declaration ######### */
 		var actualCardArray = indexPageService.getCardColors();
 		var ref_identifier = 0;
 		$scope.achievedScore = 0;
 		$scope.remainingScore = 50;
+		$scope.toastMessage = '';
 		$scope.cardData = shuffle(actualCardArray);
 
 		console.log($scope.cardData);
@@ -50,6 +51,21 @@
 				ref_identifier = 0;
 				return;
 			}
+			function resultDisplay(event){
+				switch(event){
+					case 'win': 
+					$scope.toastMessage = {'class' : 'messageIn','message' : 'You Won!!'};
+					break;
+					case 'loose':
+					$scope.toastMessage = {'class' : 'messageIn','message' : 'You cannot make it, Try Again!!'};
+					break;					
+				}
+			}
+			function reloadGame(){
+				$timeout(function () {								
+					window.location.reload();
+				}, 3000);
+			}
 			$scope.checkForTheMatch = function(identifier){
 				console.log(identifier.data);
 				if(checkForFirstClick(ref_identifier)){
@@ -65,11 +81,17 @@
 						setReferenceToDefault();
 					}
 					else{
-						$scope.remainingScore = $scope.remainingScore -20;
-						setReferenceToDefault();
+						if(validRemainingScore($scope.remainingScore))
+						{
+							$scope.remainingScore = $scope.remainingScore -20;
+							setReferenceToDefault();
+						}
+						else{		
+							resultDisplay('loose');
+							reloadGame();												
+						}
 					}
 				}
 			}
-
 	}]);
 })();

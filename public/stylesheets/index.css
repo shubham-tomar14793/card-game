@@ -9,5 +9,10 @@
 
 
 .cards{font-size:2em;text-align:center;height:100px;border:1px solid;margin-bottom:20px;}
-.score-board{border:1px solid #e3e3e3;padding: 10px 0px;margin-top: 40px}
+.score-board{border:1px solid #e1e1e1;padding: 10px 0px;margin-top: 40px;box-shadow: 0px 0px 10px 5px #e3e3e3}
 .score{font-size:2em}
+
+.messageBox{left:-300px;padding: 10px;position: absolute;width: 300px;height:50px;font-size:18px;bottom: 100px;border:1px solid #e3e3e3;text-align: center;border-radius: 15px;transition-property: left;transition-duration: 3s;background: #e1e1e1}
+.messageIn{transform: translate(150px,0px);left:30%;}
+.messageOut{transform: translate(50px,0px);left:50%;}
+#gameTimer{position: absolute;background: #e1e1e1;top: 50px;right: 10px;padding:10px;font-size: 18px;border:1px solid #e3e3e3;box-shadow: 0px 10px 10px #e3e3e3}
