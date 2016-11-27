@@ -4,11 +4,11 @@
 		/*############## variable declaration ######### */
 		var actualCardArray = indexPageService.getCardColors();
 		var ref_identifier = 0;
+		var ref_objectId = 'object';
 		$scope.achievedScore = 0;
 		$scope.remainingScore = 50;
 		$scope.toastMessage = '';
-		$scope.cardData = shuffle(actualCardArray);
-
+		$scope.cardData = shuffle(actualCardArray);		
 		console.log($scope.cardData);
 		/*############## function declaration ######### */
 		    /**********this function randomizes the object coming from the backend **********/
@@ -25,8 +25,8 @@
 			  return copy;
 			};
 
-			function checkForFirstClick(referenceData){
-				if(referenceData==0){
+			function checkForFirstClick(referenceData,refObjectData){
+				if(referenceData==0 && refObjectData=='object'){
 					return true;
 				}
 				return false;
@@ -37,18 +37,26 @@
 				}
 				return false;
 			}
-			function setTheReferenceData(comingData){
+			function setTheReferenceData(comingData,objectId){
 				ref_identifier = comingData;
-				console.log("reference set to " + ref_identifier);
+				ref_objectId = objectId;
+				console.log("reference , objectId " + ref_identifier+" "+ ref_objectId);
 			}
-			function dataMatched(secondClickData){
-				if(ref_identifier == secondClickData){
+			function dataMatched(secondClickData,secondObjData){
+				if(ref_identifier == secondClickData && ref_objectId == secondObjData){
+					alert('same card cannot be selected');					
+					return true;					
+				}
+				if(ref_identifier == secondClickData && ref_objectId != secondObjData){
+					$scope.achievedScore = $scope.achievedScore+20;	
+					setReferenceToDefault();				
 					return true;
 				}
 				return false;
 			}
 			function setReferenceToDefault(){
-				ref_identifier = 0;
+				ref_identifier = 0;	
+				ref_objectId = 'object';			
 				return;
 			}
 			function resultDisplay(event){
@@ -66,20 +74,25 @@
 					window.location.reload();
 				}, 3000);
 			}
+			function selectCard(selector){
+				var element = angular.element(document.querySelector('#card'+selector.card_id));
+				console.log(element.addClass(selector.card_color));
+				element.addClass('disabled');
+			}
+			
 			$scope.checkForTheMatch = function(identifier){
+				selectCard(identifier.data);
 				console.log(identifier.data);
-				if(checkForFirstClick(ref_identifier)){
-					setTheReferenceData(identifier.data.card_identifier);					
+				if(checkForFirstClick(ref_identifier,ref_objectId)){
+					setTheReferenceData(identifier.data.card_identifier,identifier.data.$$hashKey);					
 					console.log("first time");
 					return null;
 				}
 				else{
 					console.log("second time");
-					if(dataMatched(identifier.data.card_identifier)){
-						console.log("matched");
-						$scope.achievedScore =$scope.achievedScore+20;
-						setReferenceToDefault();
-					}
+					if(dataMatched(identifier.data.card_identifier,identifier.data.$$hashKey)){						
+						console.log("matched");												
+					}					
 					else{
 						if(validRemainingScore($scope.remainingScore))
 						{

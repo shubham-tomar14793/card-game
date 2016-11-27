@@ -1,11 +1,11 @@
-.Blue{background-color: #0000FF}
-.Brown{background-color: #A52A2A}
-.BurlyWood{background-color: #DEB887}
-.Chartreuse{background-color: #7FFF00}
-.Cyan{background-color: #00FFFF}
-.DarkGoldenRod{background-color: #B8860B}
-.DarkKhaki{background-color: #BDB76B}
-.DarkSlateGray {background-color: #2F4F4F}
+.Blue{background-color: #0000FF;transform: rotateY(180deg);transition-duration: 1s}
+.Brown{background-color: #A52A2A;transform: rotateY(180deg);transition-duration: 1s}
+.BurlyWood{background-color: #DEB887;transform: rotateY(180deg);transition-duration: 1s}
+.Chartreuse{background-color: #7FFF00;transform: rotateY(180deg);transition-duration: 1s}
+.Cyan{background-color: #00FFFF;transform: rotateY(180deg);transition-duration: 1s}
+.DarkGoldenRod{background-color: #B8860B;transform: rotateY(180deg);transition-duration: 1s}
+.DarkKhaki{background-color: #BDB76B;transform: rotateY(180deg);transition-duration: 1s}
+.DarkSlateGray {background-color: #2F4F4F;transform: rotateY(180deg);transition-duration: 1s}
 
 
 .cards{font-size:2em;text-align:center;height:100px;border:1px solid;margin-bottom:20px;}
